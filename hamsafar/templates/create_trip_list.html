@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4>welcome to page create trip list</h4>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="start_location" placeholder="enter start location">
+        <input type="text" name="end_location" placeholder="enter end location">
+        <input type="date" name="date" placeholder="enter date">
+        <input type="number" name="seats_available" placeholder="enter joi kholi">
+        <input type="text" name="description" placeholder="enter description">
+        <button type="submit">add trip</button>
+    </form>
+</body>
+</html>

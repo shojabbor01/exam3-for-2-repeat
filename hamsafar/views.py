@@ -28,11 +28,10 @@ def create_trip(request):
         seats = request.POST.get('seats_available')
         description = request.POST.get('description')
         if start and end and date and seats and description:
-            Trip.objects.create(
-                start_location=start, end_location=end, date=date, seats_available=seats, description=description)
+            Trip.objects.create(start_location=start, end_location=end, date=date, seats_available=seats, description=description)
             return redirect('home')
         return render(request, 'create_trip_list.html', {'error': 'hamai malumothoro purra kuned'})
     return render(request, 'create_trip_list.html')
 
 
-        
+    
