@@ -7,6 +7,7 @@ class User(models.Model):
     email = models.CharField(max_length=50)
     password = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to='user_photos', blank=True, null=True)
 
     def __str__(self):
         return self.username
@@ -18,7 +19,6 @@ class User(models.Model):
         verbose_name_plural = 'Users'
         
 class Trip(models.Model):
-    user = models.ForeignKey(User, related_name='trips', on_delete=models.CASCADE)
     start_location = models.CharField(max_length=100)
     end_location = models.CharField(max_length=100)
     date = models.DateTimeField()
@@ -35,13 +35,11 @@ class Trip(models.Model):
         verbose_name = 'Trip'
         verbose_name_plural = 'Trips'
         
-
 class CompanionRequest(models.Model):
-    user = models.ForeignKey(User, related_name='Companionrequest', on_delete=models.CASCADE)
     start_location = models.CharField(max_length=100)
     end_location = models.CharField(max_length=100)
     date = models.DateTimeField()
-    description = models.TextField(blank=True)
+    description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
