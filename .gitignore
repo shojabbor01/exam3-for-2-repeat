@@ -1,0 +1,55 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# VSCode, PyCharm и другие IDE
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Системные файлы Ubuntu/Linux
+*~
+.cache/
+.Trash-*/
+
+# Логи и временные файлы
+*.log
+*.tmp
+*.bak
+
+# Конфиденциальные файлы
+.env
+.env.*
+
+# Тестовые отчёты
+htmlcov/
+.tox/
+.coverage
+coverage.xml
+*.cover
+*.py,cover
+nosetests.xml
+test-results/
+
+# Миграции (если используешь Django)
+*/migrations/__pycache__/
+*/migrations/*.pyc
+
+# Библиотеки (если случайно добавлены)
+site/
+lib/
+lib64/
