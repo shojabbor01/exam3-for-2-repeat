@@ -3,42 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Главная страница</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fc;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h4 {
+            color: #333;
+        }
+
+        h4 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .item {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+
+        .item:last-child {
+            border-bottom: none;
+        }
+
+        .item h3 {
+            margin: 5px 0;
+        }
+
+        .item img {
+            width: 100px;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .add-button {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 8px 12px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .add-button:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
-    <h4>welcome to page for USER_S, TRIP_S AND COMPANION_REQUESTS</h4>
 
-    <h1>polzovateli</h1>
-    <a href="{% url 'createuser' %}">add user</a>
-    {% for user in users %}
-        <h3>username: {{user.username}}</h3>
-        <h3>email: {{user.email}}</h3>
-        <h3>password: {{user.password}}</h3>
-        <h3>created_at: {{user.created_at}}</h3>
-        <img src="{{user.image.url}}" alt="user photos">
-    {% endfor %}
+    <h4>Добро пожаловать на страницу пользователей, поездок и запросов на попутчиков</h4>
 
+    <!-- Пользователи -->
+    <div class="section">
+        <h1>Пользователи</h1>
+        <a class="add-button" href="{% url 'createuser' %}">Добавить пользователя</a>
+        {% for user in users %}
+        <div class="item">
+            <h3>Имя пользователя: {{ user.username }}</h3>
+            <h3>Email: {{ user.email }}</h3>
+            <h3>Пароль: {{ user.password }}</h3>
+            <h3>Дата создания: {{ user.created_at }}</h3>
+            <img src="{{ user.image.url }}" alt="Фото пользователя">
+            <br>
+            <a href="{% url 'updateuser' user.id %}">Редактировать</a>
+            <a href="{% url 'deleteuser' user.id %}">Удалить</a>
+        </div>
+        {% endfor %}
+    </div>
 
-    <h1>poezdki</h1>
-        <a href="{% url 'createtrip' %}">add trip</a>
-    {% for trip in trips %}
-        <h3>start_location: {{trip.start_location}}</h3>
-        <h3>end_location: {{trip.end_location}}</h3>
-        <h3>date: {{trip.date}}</h3>
-        <h3>seats_available: {{trip.seats_available}}</h3>
-        <h3>description: {{trip.description}}</h3>
-        <h3>created_at: {{trip.created_at}}</h3>
-    {% endfor %}
+    <!-- Поездки -->
+    <div class="section">
+        <h1>Поездки</h1>
+        <a class="add-button" href="{% url 'createtrip' %}">Добавить поездку</a>
+        {% for trip in trips %}
+        <div class="item">
+            <h3>Откуда: {{ trip.start_location }}</h3>
+            <h3>Куда: {{ trip.end_location }}</h3>
+            <h3>Дата: {{ trip.date }}</h3>
+            <h3>Свободные места: {{ trip.seats_available }}</h3>
+            <h3>Описание: {{ trip.description }}</h3>
+            <h3>Дата создания: {{ trip.created_at }}</h3>
+            <a href="{% url 'updatetrip' trip.id %}">Редактировать</a>
+            <a href="{% url 'deletetrip' trip.id %}">Удалить</a>
+        </div>
+        {% endfor %}
+    </div>
 
+    <!-- Попутчики -->
+    <div class="section">
+        <h1>Запросы на попутчиков</h1>
+        <a class="add-button" href="{% url 'createcompanion' %}">Добавить попутчика</a>
+        {% for com in companions %}
+        <div class="item">
+            <h3>Откуда: {{ com.start_location }}</h3>
+            <h3>Куда: {{ com.end_location }}</h3>
+            <h3>Дата: {{ com.date }}</h3>
+            <h3>Описание: {{ com.description }}</h3>
+            <h3>Дата создания: {{ com.created_at }}</h3>
+            <a href="{% url 'updatecompanion' com.id %}">Редактировать</a>
+            <a href="{% url 'deletecompanion' com.id %}">Удалить</a>
+        </div>
+        {% endfor %}
+    </div>
 
-    <h1>kompaniony</h1>
-        <a href="{% url 'createcompanion' %}">add companion</a>
-    {% for com in companions %}
-        <h3>start_location: {{com.start_location}}</h3>
-        <h3>end_location: {{com.end_location}}</h3>
-        <h3>date: {{com.date}}</h3>
-        <h3>description: {{com.description}}</h3>
-        <h3>created_at: {{com.created_at}}</h3>
-    {% endfor %}
 </body>
 </html>

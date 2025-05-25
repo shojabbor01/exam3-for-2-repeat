@@ -3,18 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Создание поездки</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            padding: 30px;
+        }
+
+        h4 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        form {
+            max-width: 450px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h4>welcome to page create trip list</h4>
+    <h4>Добавить новую поездку</h4>
     <form method="post">
         {% csrf_token %}
-        <input type="text" name="start_location" placeholder="enter start location">
-        <input type="text" name="end_location" placeholder="enter end location">
-        <input type="date" name="date" placeholder="enter date">
-        <input type="number" name="seats_available" placeholder="enter joi kholi">
-        <input type="text" name="description" placeholder="enter description">
-        <button type="submit">add trip</button>
+        <input type="text" name="start_location" placeholder="Введите пункт отправления" required>
+        <input type="text" name="end_location" placeholder="Введите пункт назначения" required>
+        <input type="date" name="date" required>
+        <input type="number" name="seats_available" placeholder="Количество мест" required>
+        <input type="text" name="description" placeholder="Описание поездки (необязательно)">
+        <button type="submit">Создать поездку</button>
     </form>
 </body>
 </html>

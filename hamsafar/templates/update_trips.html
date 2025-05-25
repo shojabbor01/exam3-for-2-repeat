@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Создание попутчика</title>
+    <title>Обновление поездки</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -27,6 +27,7 @@
         }
 
         input[type="text"],
+        input[type="number"],
         input[type="date"] {
             width: 100%;
             padding: 10px;
@@ -38,7 +39,7 @@
 
         button {
             width: 100%;
-            background-color: #17a2b8;
+            background-color: #fd7e14;
             color: white;
             padding: 12px;
             border: none;
@@ -48,19 +49,20 @@
         }
 
         button:hover {
-            background-color: #138496;
+            background-color: #e36b0a;
         }
     </style>
 </head>
 <body>
-    <h4>Добавить запрос на попутчика</h4>
+    <h4>Обновить поездку</h4>
     <form method="post">
-        {% csrf_token %} 
-        <input type="text" name="start_location" placeholder="Введите пункт отправления" required>
-        <input type="text" name="end_location" placeholder="Введите пункт назначения" required>
-        <input type="date" name="date" required>
-        <input type="text" name="description" placeholder="Описание поездки (необязательно)">
-        <button type="submit">Создать запрос</button>
+        {% csrf_token %}
+        <input type="text" name="start_location" placeholder="Пункт отправления" value="{{ std.start_location }}" required>
+        <input type="text" name="end_location" placeholder="Пункт назначения" value="{{ std.end_location }}" required>
+        <input type="date" name="date" value="{{ std.date|date:'Y-m-d' }}" required>
+        <input type="number" name="seats_available" placeholder="Свободные места" value="{{ std.seats_available }}" required>
+        <input type="text" name="description" placeholder="Описание" value="{{ std.description }}">
+        <button type="submit">Обновить поездку</button>
     </form>
 </body>
 </html>
