@@ -43,7 +43,7 @@ class CompanionRequest(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user.username} dar justujui {self.start_location} → {self.end_location}"
+        return f"dar justujui {self.start_location} → {self.end_location}"
     
     class Meta:
         db_table = 'companionrequest'

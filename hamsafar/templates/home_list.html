@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>welcome to page for USER_S, TRIP_S AND OMPANION_REQUESTS</h1>
+
+    {% for user in users %}
+        <h3>username: {{user.username}}</h3>
+        <h3>email: {{user.email}}</h3>
+        <h3>password: {{user.password}}</h3>
+        <h3>created_at: {{user.created_at}}</h3>
+        <img src="{{user.image.url}}" alt="user photos">
+    {% endfor %}
+</body>
+</html>
