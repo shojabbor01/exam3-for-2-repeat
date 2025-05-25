@@ -13,17 +13,26 @@ def create_user(request):
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
-        create_at = request.POST.get('create_at')
         image = request.FILES.get('image')
-        if username and email and password and create_at and image:
-            User.objects.create(username = username, email = email, password = password, create_at = create_at, image = image)
+        if username and email and password and image:
+            User.objects.create(username = username, email = email, password = password, image = image)
             return redirect('home')
         return render(request, 'create_user_list.html')
     return render(request, 'create_user_list.html')
 
+def create_trip(request):
+    if request.method == "POST":
+        start = request.POST.get('start_location')
+        end = request.POST.get('end_location')
+        date = request.POST.get('date')
+        seats = request.POST.get('seats_available')
+        description = request.POST.get('description')
+        if start and end and date and seats and description:
+            Trip.objects.create(
+                start_location=start, end_location=end, date=date, seats_available=seats, description=description)
+            return redirect('home')
+        return render(request, 'create_trip_list.html', {'error': 'hamai malumothoro purra kuned'})
+    return render(request, 'create_trip_list.html')
 
-    
-
-        
 
         
