@@ -34,4 +34,18 @@ def create_trip(request):
     return render(request, 'create_trip_list.html')
 
 
+     
+def create_companion(request):
+    if request.method == "POST":
+        start = request.POST.get('start_location')
+        end = request.POST.get('end_location')
+        date = request.POST.get('date')
+        description = request.POST.get('description')
+        if start and end and date and description:
+            CompanionRequest.objects.create(start_location=start, end_location=end, date=date, description=description)
+            return redirect('home')
+        return render(request, 'create_companion_list.html', {'error': 'hamai malumothoro purra kuned'})
+    return render(request, 'create_companion_list.html')
+    
+    
     

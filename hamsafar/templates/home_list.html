@@ -32,6 +32,7 @@
 
 
     <h1>kompaniony</h1>
+        <a href="{% url 'createcompanion' %}">add companion</a>
     {% for com in companions %}
         <h3>start_location: {{com.start_location}}</h3>
         <h3>end_location: {{com.end_location}}</h3>
